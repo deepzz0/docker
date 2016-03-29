@@ -48,4 +48,4 @@ $ docker run --name some-mysql -v /my/own/datadir:/var/lib/mysql -e MYSQL_ROOT_P
 # 将容器/var/lib/mysql目录映射出来
 ```
 
-<https://hub.docker.com/_/mysql/>
+[1] https://hub.docker.com/_/mysql/
