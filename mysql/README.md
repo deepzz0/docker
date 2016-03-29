@@ -4,8 +4,10 @@
 
 1. 时区默认使用 +8:00 时区
 2. 直接运行 build_docker.sh 生成镜像
-2. 生成镜像名为 127.0.0.1:5000/mysql:5.7
+3. 生成镜像名为 127.0.0.1:5000/mysql:5.7
+
 ## 使用说明
+
 1. 运行一个容器
 ```
 $ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d 127.0.0.1:5000/mysql:5.7
