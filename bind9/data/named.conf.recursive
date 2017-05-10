@@ -37,9 +37,7 @@
 // advisable before you attempt to configure a resolver.
 
 acl allow_list {
-    54.223.79.207/24;
-    54.223.79.207/21;
-    127.0.0.1/24;
+
 };
 
 acl black_list {
@@ -70,16 +68,16 @@ options {
 
         // Specify a list of CIDR masks which should be allowed to issue recursive
         // queries to the DNS server. Do NOT specify 0.0.0.0/0 here; see above.
-        allow-query {
-                allow_list;
-        };
+        //allow-query {
+        //        allow_list;
+        //};
 
         recursion yes;
         allow-recursion {
-                allow_list;
+                0.0.0.0/0;
         };
 
-        blackhole { black_list; };
+        //blackhole { black_list; };
 
         // DNSSEC
         dnssec-enable yes;
