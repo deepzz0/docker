@@ -1,23 +1,19 @@
+镜像地址：[deepzz/bind9](deepzz/bind9)
 
-deepzz/bind9
-==============
+构建：
+```
+$ ./build.sh
+```
 
-> fork from https://github.com/mbentley/docker-bind9
+拉取：
+```
+$ docker pull deepzz/bind9
+```
 
-docker image for bind9
-based off of alpine:latest
+运行：
+```
+$ docker run -d --name bind9 -p 53:53 -p 53:53/udp -e ENABLE_CONTROL_CHANNEL=true deepzz/bind9
+```
 
-To pull this image:
-`docker pull deepzz/bind9`
-
-Example usage, binding to all IPs on the docker host:
-`docker run -d -p 53:53 -p 53:53/udp -e ENABLE_CONTROL_CHANNEL=true deepzz/bind9`
-
-Example usage, binding to a specific IP on the docker host:
-`docker run -d -p <ip-address>:53:53 -p <ip-address>:53:53/udp -e ENABLE_CONTROL_CHANNEL=true deepzz/bind9`
-
-*Note:* By default, this image is configured to recursively answer queries from any IP.  Copy and edit one of the files in `/etc/bind` to customize the server for your needs.
-
-Options:
-* `ENABLE_CONTROL_CHANNEL` (default: false) - Set to `true` to enable the control channel, allowing the use of `rndc` to control bind
-    * Note: If `rndc.key` or `rndc.conf` is available via volume, it will still be used by bind.
+可选项:
+* `ENABLE_CONTROL_CHANNEL` (default: false) - 设置为 `true`，则可通过 `rndc` 控制 bind。
