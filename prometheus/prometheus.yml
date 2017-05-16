@@ -1,0 +1,51 @@
+# my global config
+global:
+  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  scrape_timeout:      10s # How long until a scrape request times out. default 10s.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+
+  # Attach these labels to any time series or alerts when communicating with
+  # external systems (federation, remote storage, Alertmanager).
+  external_labels:
+      monitor: 'codelab-monitor'
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+  # - "first.rules"
+  # - "second.rules"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'prometheus'
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+      - targets: ['192.168.99.100:9090']
+
+  - job_name: 'test-example'
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
+      - targets: ['192.168.99.100:8015']
+
+# Alerting specifies settings related to the Alertmanager.
+alerting:
+#   alert_relabel_configs:
+#     [ - <relabel_config> ... ]
+#   alertmanagers:
+#     [ - <alertmanager_config> ... ]
+
+# Settings related to the experimental remote write feature.
+remote_write:
+#   [ - <remote_write> ... ]
+
+# Settings related to the experimental remote read feature.
+remote_read:
+#   [ - <remote_read> ... ]
