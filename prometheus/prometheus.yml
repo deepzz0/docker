@@ -20,20 +20,15 @@ rule_files:
 scrape_configs:
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
   - job_name: 'prometheus'
-
     # metrics_path defaults to '/metrics'
     # scheme defaults to 'http'.
-
     static_configs:
-      - targets: ['192.168.99.100:9090']
+      - targets: ['127.0.0.1:9090']
 
-  - job_name: 'test-example'
-
-    # metrics_path defaults to '/metrics'
-    # scheme defaults to 'http'.
-
+  - job_name: 'pushgateway'
+    honor_labels: true
     static_configs:
-      - targets: ['192.168.99.100:8015']
+      - targets: ['pushgateway:9091']
 
 # Alerting specifies settings related to the Alertmanager.
 alerting:
