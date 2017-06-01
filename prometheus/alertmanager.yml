@@ -50,7 +50,4 @@ receivers:
 - name: 'develop-team'
   email_configs:
   - html: '{{ template "email.html" .}}'
-    to: 'henry.chen@trustasia.com'
-  # - to: 'jerry.hou@trustasia.com'
-  # - to: 'razeen.cheng@trustasia.com'
-  # - to: 'leo.huang@trustasia.com'
+    to: 'test@example.com'
