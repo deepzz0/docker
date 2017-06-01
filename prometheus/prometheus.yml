@@ -1,3 +1,6 @@
+# example:
+#   https://github.com/prometheus/prometheus/blob/master/config/testdata/conf.good.yml
+
 # my global config
 global:
   scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
@@ -8,12 +11,12 @@ global:
   # Attach these labels to any time series or alerts when communicating with
   # external systems (federation, remote storage, Alertmanager).
   external_labels:
-      monitor: 'codelab-monitor'
+    monitor: 'codelab-monitor'
 
 # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
 rule_files:
-  # - "first.rules"
-  # - "second.rules"
+  # - "rules/recording.rules"
+  - "rules/alerting.rules"
 
 # A scrape configuration containing exactly one endpoint to scrape:
 # Here it's Prometheus itself.
@@ -28,14 +31,18 @@ scrape_configs:
   - job_name: 'pushgateway'
     honor_labels: true
     static_configs:
-      - targets: ['pushgateway:9091']
+    - targets: ['192.168.99.100:9091']
+
+  - job_name: 'down-instance'
+    static_configs:
+      - targets: ['127.0.0.1:9999']
 
 # Alerting specifies settings related to the Alertmanager.
 alerting:
-#   alert_relabel_configs:
-#     [ - <relabel_config> ... ]
-#   alertmanagers:
-#     [ - <alertmanager_config> ... ]
+  alertmanagers:
+  - scheme: 'http'
+    static_configs:
+    - targets: ['alertmanager:9093']
 
 # Settings related to the experimental remote write feature.
 remote_write:

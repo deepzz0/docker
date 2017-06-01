@@ -6,8 +6,17 @@ services:
             - "9090:9090"
         links:
             - pushgateway
+            - alertmanager
         volumes:
             - $GOPATH/src/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+            - $GOPATH/src/prometheus/rules:/etc/prometheus/rules
+    alertmanager:
+        image: prom/alertmanager
+        volumes:
+            - $GOPATH/src/prometheus/alertmanager.yml:/etc/alertmanager/config.yml
+            - $GOPATH/src/prometheus/template:/etc/alertmanager/template
+        ports:
+            - "9093:9093"
     pushgateway:
         image: prom/pushgateway
         ports:
