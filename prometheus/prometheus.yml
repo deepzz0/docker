@@ -31,7 +31,7 @@ scrape_configs:
   - job_name: 'pushgateway'
     honor_labels: true
     static_configs:
-    - targets: ['192.168.99.100:9091']
+    - targets: ['pushgateway:9091']
 
   - job_name: 'down-instance'
     static_configs:

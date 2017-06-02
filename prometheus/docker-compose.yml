@@ -8,13 +8,14 @@ services:
             - pushgateway
             - alertmanager
         volumes:
-            - $GOPATH/src/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-            - $GOPATH/src/prometheus/rules:/etc/prometheus/rules
+            - ~/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+            - ~/prometheus/rules:/etc/prometheus/rules
+            - /data/prometheus:/prometheus
     alertmanager:
         image: prom/alertmanager
         volumes:
-            - $GOPATH/src/prometheus/alertmanager.yml:/etc/alertmanager/config.yml
-            - $GOPATH/src/prometheus/template:/etc/alertmanager/template
+            - ~/prometheus/alertmanager.yml:/etc/alertmanager/config.yml
+            - ~/prometheus/template:/etc/alertmanager/template
         ports:
             - "9093:9093"
     pushgateway:
@@ -30,3 +31,5 @@ services:
             - GF_SECURITY_ADMIN_PASSWORD=admin
         links:
             - prometheus
+        volumes:
+            - /data/grafana:/var/lib/grafana
